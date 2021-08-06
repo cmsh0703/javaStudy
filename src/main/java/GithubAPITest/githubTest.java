@@ -15,6 +15,7 @@ public class githubTest {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 
+		System.out.println("test");
 		// properties 파일로 token 관리
 		String path = "src/main/resources/application.properties";
 		GitHub github = GitHubBuilder.fromPropertyFile(path).build();
@@ -37,6 +38,7 @@ public class githubTest {
 				String userName = commentTmp.getUserName();
 				String content = commentTmp.getBody();
 				System.out.print("userName : "+userName+", content : "+content);
+				
 			}
 			System.out.println();
 		}
