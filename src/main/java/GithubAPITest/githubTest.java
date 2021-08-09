@@ -18,7 +18,7 @@ public class githubTest {
 		// TODO Auto-generated method stub
 
 		System.out.println("test");
-		// properties 파일로 token 관리
+		// properties 파일로 token 관리---> token destroy 되면 github server로 연결안되서 새로 생성해서 바꿔줘야함
 		String path = "src/main/resources/application.properties";
 		//GitHub github = GitHubBuilder.fromPropertyFile(path).build();
 		// 아래방법도 가능하긴 하나, 비추
@@ -61,6 +61,7 @@ public class githubTest {
 			String name = st.next().toString();
 			System.out.println("사용자 "+name+"의 참석률 : "+(Integer.parseInt(hm.get(name).toString())/(issues.size()*1.00))*100+" %");
 		}
+		
 	}
 
 }
