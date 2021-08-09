@@ -2,6 +2,7 @@ package GithubAPITest;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.kohsuke.github.GHIssue;
@@ -19,9 +20,9 @@ public class githubTest {
 		System.out.println("test");
 		// properties 파일로 token 관리
 		String path = "src/main/resources/application.properties";
-		GitHub github = GitHubBuilder.fromPropertyFile(path).build();
+		//GitHub github = GitHubBuilder.fromPropertyFile(path).build();
 		// 아래방법도 가능하긴 하나, 비추
-		 //GitHub github = new GitHubBuilder().withOAuthToken("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").build();
+		 GitHub github = new GitHubBuilder().withOAuthToken("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").build();
 		github.checkApiUrlValidity();
 
 		// 해당 repository 가져오기
@@ -35,6 +36,7 @@ public class githubTest {
 		
 		for(int i= 0; i < issues.size(); i++) {
 			System.out.println("["+(i+1)+" 번째 issue] ===== "+issues.get(i));
+			//issue별로 comment 가져오기
 			List<GHIssueComment> issueComment = issues.get(i).getComments();
 			
 			for(int j = 0; j < issueComment.size(); j++) {
@@ -50,11 +52,15 @@ public class githubTest {
 					hm.put(userName, 1);
 					System.out.println("첫댓글");
 				}
-				
 			}
 			System.out.println();
 		}
-
+		
+		Iterator st = hm.keySet().iterator();
+		for(;st.hasNext();) {
+			String name = st.next().toString();
+			System.out.println("사용자 "+name+"의 참석률 : "+(Integer.parseInt(hm.get(name).toString())/(issues.size()*1.00))*100+" %");
+		}
 	}
 
 }
